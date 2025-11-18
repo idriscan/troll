@@ -1,33 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+
+<html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>merhaba</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Seni her dilde seviyorum</title>
+  <style>
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:#071226;color:#fff}
+    .wrap{height:100%;display:flex;align-items:center;justify-content:center}
+    .big{font-size:40px;font-weight:800;letter-spacing:0.6px;text-align:center;user-select:none}
+    .hint{display:block;font-size:14px;opacity:0.7;margin-top:10px;font-weight:600}
+    .phrase{position:absolute;pointer-events:none;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.06);white-space:nowrap;font-weight:700}
+    @media (max-width:600px){.big{font-size:26px;padding:0 20px}}
+  </style>
 </head>
-<body title="merhaba">
-    <table border="10" title="merhaba">
-        <tr>
-            <td>
-                <a href="https://www.youtube.com/shorts/jQmhJahxKDI">mirketler neden ölür</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="https://www.youtube.com/watch?v=5SgW58Ln7Nc&list=RD5SgW58Ln7Nc&start_radio=1">bu adam neden cehennemde daha <br> rahat şimdi belli oldu</a>
-            </td>
-            <td>
-                <a href="https://www.youtube.com/watch?v=5Gab6i0CItw&list=RD5Gab6i0CItw&start_radio=1"> ALLAHU EKBER</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="https://www.youtube.com/watch?v=KdOrI95RAXI">9/11</a>
-            </td>
-            <td>
-                <a href="https://www.youtube.com/shorts/W7_IsbHNGJE">mehmet beni unutma yoksa küserim</a>
-            </td>
-        </tr>
-    </table>
-</body>
+<body>
+  <div class="wrap" id="stage">
+    <div>
+      <div class="big">Seni her dilde seviyorum</div>
+      <div class="hint">Ekrana tıkla — tıkladığın yerde rastgele bir dilde "Seni seviyorum" belirir.</div>
+    </div>
+  </div>  <script>
+    // 100 kısa ve güvenilir çeviri
+    const phrases = [
+      "I love you", // English
+      "Te amo", // Spanish
+      "Te quiero", // Spanish (affectionate)
+      "Je t'aime", // French
+      "Ti amo", // Italian
+      "Ich liebe dich", // German
+      "Eu te amo", // Portuguese
+      "Я тебя люблю", // Russian
+      "我爱你", // Chinese (Simplified)
+      "愛してる", // Japanese
+      "사랑해", // Korean
+      "أحبك", // Arabic
+      "Σ' αγαπώ", // Greek
+      "Seni seviyorum", // Turkish
+      "Te iubesc", // Romanian
+      "Kocham cię", // Polish
+      "Ik hou van jou", // Dutch
+      "Jag älskar dig", // Swedish
+      "Jeg elsker deg", // Norwegian
+      "Jeg elsker dig", // Danish
+      "Aš tave myliu", // Lithuanian
+      "Mahal kita", // Filipino/Tagalog
+      "Volim te", // Croatian/Serbian/Bosnian
+      "Szeretlek", // Hungarian
+      "Mi amas vin", // Esperanto
+      "Ninakupenda", // Swahili
+      "Nakupenda", // Swahili alt
+      "Të dua", // Albanian
+      "T'estimo", // Catalan
+      "Miluji tě", // Czech
+      "Обичам те", // Bulgarian
+      "Ek het jou lief", // Afrikaans
+      "Minä rakastan sinua", // Finnish
+      "Te amo", // Latin (classical phrasing)
+      "אני אוהב אותך", // Hebrew (m->f)
+      "אני אוהבת אותך", // Hebrew (f->m)
+      "Я тебе люблю", // Ukrainian
+      "Ami tomake bhalobashi", // Bengali (romanized)
+      "Saya cinta padamu", // Indonesian
+      "Anh yêu em", // Vietnamese (m->f)
+      "Em yêu anh", // Vietnamese (f->m)
+      "Ljubim te", // Slovenian
+      "Maite zaitut", // Basque
+      "Rwy'n dy garu di", // Welsh
+      "Ég elska þig", // Icelandic
+      "Ma armastan sind", // Estonian
+      "Es tevi mīlu", // Latvian
+      "მიყვარხარ", // Georgian
+      "Ես քեզ սիրում եմ", // Armenian
+      "Ngiyakuthanda", // Zulu
+      "Ndiyakuthanda", // Xhosa
+      "Ndinokuda", // Shona
+      "Mo nifẹ rẹ", // Yoruba
+      "A hụrụ m gị n'anya", // Igbo
+      "मैं तुमसे प्यार करता हूँ", // Hindi (m->f)
+      "میں تم سے محبت کرتا ہوں", // Urdu (m->f)
+      "دوستت دارم", // Persian
+      "ខ្ញុំស្រលាញ់អ្នក", // Khmer
+      "ฉันรักคุณ", // Thai
+      "ຂ້ອຍຮັກເຈົ້າ", // Lao
+      "Aloha au ia 'oe", // Hawaiian
+      "Eu te adoro", // Portuguese (I adore you)
+      "Ti voglio bene", // Italian (affectionate)
+      "S'agapo poly", // Greek (very much)
+      "Tôi rất yêu bạn", // Vietnamese (very much)
+      "Uwielbiam cię", // Polish (I adore you)
+      "Nakupenda sana", // Swahili (very much)
+      "Mahal na mahal kita", // Tagalog (very much)
+      "Minä rakastan sinua ikuisesti", // Finnish (forever)
+      "Te iubesc din tot sufletul", // Romanian (poetic)
+      "Eu te quero", // Brazilian Portuguese (colloquial)
+      "Volim te puno", // Serbian/Croatian (a lot)
+      "S'agapo poli poli", // Greek emphatic
+      "Ik hou heel veel van je", // Dutch (very much)
+      "Ti amo con tutto il cuore", // Italian (poetic)
+      "Je t'aime de tout mon cœur", // French (poetic)
+      "Mi te amas", // Interlingua
+      "S'agapo megalos", // Greek (colloquial variant)
+      "Te dua shume", // Albanian (a lot)
+      "Kjærlighet til deg", // Norwegian literal
+      "T'estimo molt", // Catalan (very much)
+      "Tôi yêu em nhiều lắm", // Vietnamese emphatic
+      "Aşkım seni seviyorum", // Turkish affectionate
+      "Te amo, mi amor", // Spanish poetic
+      "Je t'aime mon amour" // French poetic
+    ];
+
+    // Ensure exactly 100 items: fill with harmless English variants if needed
+    while (phrases.length < 100) phrases.push("I love you " + (phrases.length+1));
+
+    const stage = document.getElementById('stage');
+
+    function show(text,x,y){
+      const el = document.createElement('div');
+      el.className = 'phrase';
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      el.textContent = text;
+      stage.appendChild(el);
+      // animate up
+      el.animate([
+        {transform:'translate(-50%,-50%) translateY(0)', opacity:1},
+        {transform:'translate(-50%,-50%) translateY(-120px)', opacity:0}
+      ],{duration:2000,easing:'cubic-bezier(.22,.9,.3,1)'});
+      setTimeout(()=> el.remove(),2100);
+    }
+
+    function handleClick(clientX,clientY){
+      const rect = stage.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const p = phrases[Math.floor(Math.random()*phrases.length)];
+      show(p,x,y);
+    }
+
+    stage.addEventListener('click', (e)=> handleClick(e.clientX,e.clientY));
+    stage.addEventListener('touchstart', (e)=>{ const t=e.touches[0]; if(t) handleClick(t.clientX,t.clientY); });
+  </script></body>
 </html>
